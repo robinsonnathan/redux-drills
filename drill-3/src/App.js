@@ -1,8 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { addGuest, removeGuest } from './ducks/guestList'
+
 import './App.css';
 
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      inputBox: '',
+    }
+  }
+
+  handleInputChange(e) {
+    this.setState({inputBox: e.target.value})
+  }
+
+  handleSubmit(e){
+    this.props.addGuest(this.state.inputBox);
+    this.setState({inputBox: ''})
+  }
+
   render() {
     return (
       <div className="App">
@@ -18,14 +37,24 @@ class App extends Component {
             )
           })}
         </ul>
-        <div className="add-guest">
-          Add guest: <input type="" className=""/>
-          <button type="" className="">Add</button>
+        <div
+          onSubmit={this.handleSubmit}
+          className="add-guest">
+          Add guest:
+            <input
+              value={this.state.inputBox}
+              onChange={this.handleInputChange}
+              />
+            <button>Add</button>
+          </div>
         </div>
-      </div>
     );
   }
 }
+
+
+
+
 
 function mapStateToProps(state) {
   return {
@@ -33,4 +62,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { addGuest })(App);
