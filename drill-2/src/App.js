@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+
 import './App.css';
 
 class App extends Component {
@@ -8,10 +10,10 @@ class App extends Component {
         <h1>DevMountain Hackathon</h1>
         <h3>Guest List:</h3>
         <ul>
-          {{/*??*/}.map( (guest, i) => {
+          {this.props.guests.map( (guest, i) => {
             return (
               <div key={i} className="list-item">
-                <li>{/**/}</li>
+                <li>{guest}</li>
                 <button type="" className="">Remove</button>
               </div>
             )
@@ -26,6 +28,10 @@ class App extends Component {
   }
 }
 
-// mapStateToProps
+function mapStateToProps(state){
+  return {
+    guests: state.guests,
+  }
+}
 
-//connect
+connect(mapStateToProps)(App);
