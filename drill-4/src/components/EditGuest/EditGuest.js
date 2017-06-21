@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './EditGuest.css';
+import { connect } from 'react-redux';
+import { editGuest } from '../../ducks/guestList'
 
 class EditGuest extends Component {
   constructor(props) {
@@ -13,16 +15,14 @@ class EditGuest extends Component {
   }
 
   handleInputChange(e) {
+
     this.setState({
       text: e.target.value
     })
   }
 
   update() {
-    // update guest name function
-    // this.setState({
-    //   guests:
-    // })
+    this.props.editGuest(this.props.index, this.state.text);
     this.props.hide();
   }
 
@@ -51,9 +51,6 @@ class EditGuest extends Component {
   }
 }
 
-function mapStateToProps(state){
-  guests: this.guests
-}
 
-export default EditGuest;
-// export default connect(mapStateToProps)(EditGuest);
+
+export default connect(null,{ editGuest })(EditGuest);

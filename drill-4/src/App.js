@@ -34,6 +34,7 @@ class App extends Component {
       text: e.target.value
     })
   }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.addGuest(this.state.text);
