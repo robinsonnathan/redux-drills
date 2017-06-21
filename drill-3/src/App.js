@@ -23,34 +23,33 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <h1>DevMountain Hackathon</h1>
-        <h3>Guest List:</h3>
-        <ul>
-          {this.props.list.map( (guest, i) => {
-            return (
-              <div key={i} className="list-item">
-                <li>{guest}</li>
-                <button type="" className="">Remove</button>
-              </div>
-            )
-          })}
-        </ul>
-        <div
-          onSubmit={this.handleSubmit}
-          className="add-guest">
-          Add guest:
-            <input
-              value={this.state.inputBox}
-              onChange={this.handleInputChange}
-              />
-            <button>Add</button>
-          </div>
-        </div>
-    );
-  }
-}
+     return (
+       <div className="App">
+         <h1>DevMountain Hackathon</h1>
+         <h3>Guest List:</h3>
+         <ul>
+           {this.props.list.map( (guest, i) => {
+             return (
+               <div key={i} className="list-item">
+                 <li>{guest}</li>
+                 <button onClick={()=> this.props.removeGuest(i)}>Remove</button>
+               </div>
+             )
+           })}
+         </ul>
+         <form
+           onSubmit={this.handleSubmit}
+           className="add-guest">
+           Add guest: <input
+           value={this.state.text}
+           onChange={this.handleInputChange}
+           />
+           <button>Add</button>
+         </form>
+       </div>
+     );
+   }
+ }
 
 
 
