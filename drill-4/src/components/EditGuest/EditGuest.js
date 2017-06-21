@@ -8,13 +8,24 @@ class EditGuest extends Component {
       text: this.props.guest
     }
     this.update = this.update.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+
   }
 
+  handleInputChange(e) {
+    this.setState({
+      text: e.target.value
+    })
+  }
 
   update() {
     // update guest name function
+    // this.setState({
+    //   guests:
+    // })
     this.props.hide();
   }
+
 
 
 
@@ -23,10 +34,13 @@ class EditGuest extends Component {
       <div className="modal-bg">
         <div className="modal">
           <input
-            className="modal-input"/>
+            className="modal-input"
+            value={this.state.text}
+            onChange={this.handleInputChange}/>
           <button
             type=""
-            className="modal-btn">Update</button>
+            className="modal-btn"
+            onClick={this.update}  >Update</button>
           <button
             onClick={this.props.hide}
             type=""
@@ -37,4 +51,9 @@ class EditGuest extends Component {
   }
 }
 
+function mapStateToProps(state){
+  guests: this.guests
+}
+
 export default EditGuest;
+// export default connect(mapStateToProps)(EditGuest);
